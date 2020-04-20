@@ -1,7 +1,8 @@
-package com.astain.forecastmvvm
+package com.astain.forecastmvvm.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.astain.forecastmvvm.R
 
 class MainActivity : AppCompatActivity() {
 
