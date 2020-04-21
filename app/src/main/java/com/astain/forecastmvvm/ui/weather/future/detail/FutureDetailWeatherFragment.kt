@@ -1,4 +1,4 @@
-package com.astain.forecastmvvm.ui.weather.future.list
+package com.astain.forecastmvvm.ui.weather.future.detail
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,25 +9,25 @@ import androidx.lifecycle.ViewModelProvider
 
 import com.astain.forecastmvvm.R
 
-class FutureListWeather : Fragment() {
+class FutureDetailWeatherFragment : Fragment() {
 
     companion object {
         fun newInstance() =
-            FutureListWeather()
+            FutureDetailWeatherFragment()
     }
 
-    private lateinit var viewModel: FutureListWeatherViewModel
+    private lateinit var viewModel: FutureDetailWeatherViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.future_list_weather_fragment, container, false)
+        return inflater.inflate(R.layout.future_detail_weather_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(FutureListWeatherViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(FutureDetailWeatherViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

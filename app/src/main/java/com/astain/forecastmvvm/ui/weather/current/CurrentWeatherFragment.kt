@@ -1,4 +1,4 @@
-package com.astain.forecastmvvm.ui.weather.future.detail
+package com.astain.forecastmvvm.ui.weather.current
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,27 +8,33 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 
 import com.astain.forecastmvvm.R
+import com.astain.forecastmvvm.data.WeatherApiService
+import kotlinx.android.synthetic.main.current_weather_fragment.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
-class FutureDetailWeather : Fragment() {
+class CurrentWeatherFragment : Fragment() {
 
     companion object {
         fun newInstance() =
-            FutureDetailWeather()
+            CurrentWeatherFragment()
     }
 
-    private lateinit var viewModel: FutureDetailWeatherViewModel
+    private lateinit var viewModel: CurrentWeatherViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.future_detail_weather_fragment, container, false)
+        return inflater.inflate(R.layout.current_weather_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(FutureDetailWeatherViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(CurrentWeatherViewModel::class.java)
         // TODO: Use the ViewModel
+
     }
 
 }

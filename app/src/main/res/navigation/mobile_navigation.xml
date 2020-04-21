@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/currentWeatherFragment"
-        android:name="com.astain.forecastmvvm.ui.weather.current.CurrentWeather"
+        android:name="com.astain.forecastmvvm.ui.weather.current.CurrentWeatherFragment"
         android:label="current_weather_fragment"
         tools:layout="@layout/current_weather_fragment" />
     <fragment
         android:id="@+id/futureListWeatherFragment"
-        android:name="com.astain.forecastmvvm.ui.weather.future.list.FutureListWeather"
+        android:name="com.astain.forecastmvvm.ui.weather.future.list.FutureListWeatherFragment"
         android:label="future_list_weather_fragment"
         tools:layout="@layout/future_list_weather_fragment" />
     <fragment
         android:id="@+id/futureDetailWeatherFragment"
-        android:name="com.astain.forecastmvvm.ui.weather.future.detail.FutureDetailWeather"
+        android:name="com.astain.forecastmvvm.ui.weather.future.detail.FutureDetailWeatherFragment"
         android:label="future_detail_weather_fragment"
         tools:layout="@layout/future_detail_weather_fragment" />
     <fragment
