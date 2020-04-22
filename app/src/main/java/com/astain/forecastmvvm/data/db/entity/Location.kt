@@ -1,4 +1,4 @@
-package com.astain.forecastmvvm.data.response
+package com.astain.forecastmvvm.data.db.entity
 
 
 import com.google.gson.annotations.SerializedName
