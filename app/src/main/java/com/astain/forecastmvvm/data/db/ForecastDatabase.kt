@@ -23,6 +23,7 @@ abstract class ForecastDatabase : RoomDatabase(){
         operator fun invoke(context: Context) = instance ?: synchronized(Lock) {
             instance ?: buildDatabase(context).also { instance = it }
         }
+
         private  fun buildDatabase(context: Context) =
             Room.databaseBuilder(context.applicationContext,
             ForecastDatabase::class.java,  "forecast.db").build()
