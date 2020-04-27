@@ -16,13 +16,15 @@ import kotlinx.android.synthetic.main.current_weather_fragment.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.closestKodein
+import org.kodein.di.generic.instance
 
-class CurrentWeatherFragment : Fragment() {
+class CurrentWeatherFragment : Fragment(), KodeinAware {
 
-    companion object {
-        fun newInstance() =
-            CurrentWeatherFragment()
-    }
+    override val kodein by closestKodein()
+    private val viewModelFactory by instance<CurrentWeatherViewModelFactory>()
 
     private lateinit var viewModel: CurrentWeatherViewModel
 
@@ -35,19 +37,18 @@ class CurrentWeatherFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(CurrentWeatherViewModel::class.java)
-        // TODO: Use the ViewModel
+        viewModel = ViewModelProvider(this, viewModelFactory)
+            .get(CurrentWeatherViewModel::class.java)
 
-        val apiService = WeatherApiService(ConnectivityInterceptorImpl(this.context!!))
-        val weatherNetworkDataSource = WeatherNetworkDataSourceImpl(apiService)
+        bindUi()
+    }
 
-        weatherNetworkDataSource.downloadedCurrentWeather.observe(viewLifecycleOwner, Observer {
+    private fun bindUi()  = GlobalScope.launch{
+        val currentWeather = viewModel.weather.await()
+        currentWeather.observe(this@CurrentWeatherFragment, Observer {
+            if (it == null) return@Observer
             textview.text = it.toString()
         })
-
-        GlobalScope.launch(Dispatchers.Main ) {
-            weatherNetworkDataSource.fetchCurrentWeather("Barcelona", "en", "m")
-        }
-    }
+    }.cancel()
 
 }
